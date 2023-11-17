@@ -1,0 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
+    <h1>Create $MODEL$</h1>
+    $DATA$
+@endsection

@@ -1,0 +1,81 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use App\Http\Requests\$MODEL$Request;
+use App\Models\$MODEL$;
+
+class $CLASS$ extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('$NAME$.index', [
+            'data' => $MODEL$::all()
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('$NAME$.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store($MODEL$Request $request): RedirectResponse
+    {
+        $data = $request->validated();
+        $MODEL$::create($data);
+        return redirect()->route('$NAME$.index');
+    }
+
+    /**
+     * Show the specified resource.
+     */
+    public function show($id)
+    {
+        return view('$NAME$.show', [
+            'data' => $MODEL$::findOrFail($id)
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        return view('$NAME$.edit', [
+            'data' => $MODEL$::findOrFail($id)
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update($MODEL$Request $request, $id): RedirectResponse
+    {
+        $data = $request->validated();
+        $model = $MODEL$::findOrFail($id);
+        $model->update($data);
+        return redirect()->route('$NAME$.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id): RedirectResponse
+    {
+        $data = $MODEL$::findOrFail($id);
+        $data->delete();
+        return redirect()->route('$NAME$.index');
+    }
+}
